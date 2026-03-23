@@ -50,20 +50,23 @@
     }
 
     /* ─── Logo ─── */
-    /* Using the real logo extracted from brand guidelines.
-       The pill background is near-black, blending with our page bg. */
     .logo img {
-      height: 44px;
+      height: 56px;
       width: auto;
     }
 
     /* ─── Tagline ─── */
     .tagline {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
       font-weight: 400;
       color: var(--text);
       line-height: 1.6;
-      max-width: 480px;
+      max-width: 700px;   /* wide enough to stay one line on desktop */
+      white-space: nowrap; /* force single line on desktop */
+    }
+
+    @media (max-width: 700px) {
+      .tagline { white-space: normal; } /* allow wrap on mobile */
     }
 
     /* ─── Divider ─── */
