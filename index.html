@@ -104,6 +104,59 @@
       color: #fff;
     }
 
+    /* ─── Copy button ─── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.2rem;
+      color: var(--text-muted);
+      opacity: 0.55;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.2s, color 0.2s;
+      position: relative;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.9;
+      color: var(--text);
+    }
+
+    .copy-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Tooltip shown on copy */
+    .copy-btn::after {
+      content: "Copied!";
+      position: absolute;
+      top: -1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    .copy-btn.copied::after {
+      opacity: 1;
+    }
+
     /* ─── Footer ─── */
     footer {
       text-align: center;
@@ -129,7 +182,21 @@
 
     <div class="contact">
       <p class="contact-label">Get in touch</p>
-      <a href="mailto:info@therider.ai" class="contact-email">info@therider.ai</a>
+      <div class="contact-row">
+        <a href="mailto:info@therider.ai" class="contact-email">info@therider.ai</a>
+        <button class="copy-btn" aria-label="Copy email address" onclick="
+          navigator.clipboard.writeText('info@therider.ai').then(() => {
+            this.classList.add('copied');
+            setTimeout(() => this.classList.remove('copied'), 1500);
+          });
+        ">
+          <!-- Two-pages copy icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </main>
 
